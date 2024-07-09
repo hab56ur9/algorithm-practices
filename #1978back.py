@@ -140,4 +140,4 @@ cnt = 0
 for item in data :
     if Eratos[item] : 
         cnt+=1
-
+print(cnt)

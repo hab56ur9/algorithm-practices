@@ -14,7 +14,7 @@
 # print("".join([ x*n for x in data ]))
 
 n = int(input())
-for i in range(1,n+1):
+for i in range(n):
     data = input()
     data = data.split(" ")
     print("".join([ x*int(data[0]) for x in data[1] ]))

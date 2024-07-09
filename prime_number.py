@@ -1,5 +1,22 @@
-num = int(input())
+num= 10000
+cnt = 0 
+def is_prime1(n):
+    global cnt 
+    cnt+=2 # 함수실행 + if 1회
+    if n <= 1:
+        return False
+    for i in range(2, n):
+        cnt+=2 # if 문 1회 + for문 반복 1회
+        if n % i == 0:
+            return False
+    return True
+print([x for x in range(num+1) if is_prime1(x)] , '실행 횟수',cnt)
 
+##########################################################################
+#
+#    검색 맥스범위 제곱근 적용
+#
+num= 1000
 cnt = 0 
 def is_prime(n):
     global cnt 
@@ -10,9 +27,9 @@ def is_prime(n):
     for i in range(2, int(n**(1/2))+1):
         cnt+=2
         if n % i == 0:
-            return False,cnt
+            return False
     return True
-print([2]+[x for x in range(3,num+1,2) if is_prime(x)] , '실행 횟수',cnt)
+print([2]+[x for x in range(num+1) if is_prime(x)] , '실행 횟수',cnt)
 
 # 에라토스 테네스의 체 개선판 
 # 1. 인덱스 맥스 범위 n의 제곱근
@@ -22,6 +39,7 @@ print([2]+[x for x in range(3,num+1,2) if is_prime(x)] , '실행 횟수',cnt)
 # 5. 10이내의 범위는 예측이 쉽고, 제곱수를 시작첨자로 잡아도 문제가 없다.
 
 cnt = 0 
+# 자연수 N 이하의 소수를 모두 찾는다. 
 def logic3(n):
     global cnt
     cnt+=1
@@ -39,6 +57,6 @@ def logic3(n):
                 Eratos[j] = False
     return Eratos
 list = logic3(num)
-print([2]+[x for x in range(3,num+1,2) if list[x]], '실행 횟수',cnt) # 홀수만 검색 
+print([2]+[x for x in range(num+1) if list[x]], '실행 횟수',cnt) # 홀수만 검색 
 
 
