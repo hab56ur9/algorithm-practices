@@ -11,37 +11,70 @@
 # 첫째 줄에 도시의 수 N이 주어진다. (2 ≤ N ≤ 10) 다음 N개의 줄에는 비용 행렬이 주어진다. 각 행렬의 성분은 1,000,000 이하의 양의 정수이며, 갈 수 없는 경우는 0이 주어진다. W[i][j]는 도시 i에서 j로 가기 위한 비용을 나타낸다.
 
 # 항상 순회할 수 있는 경우만 입력으로 주어진다.
-import sys
-input = sys.stdin.readline
-max = int(input())
-visited = [False]*max
-start = 0
+# import sys
+# input = sys.stdin.readline
+# max = int(input())
+# visited = [False]*max
+# start = 0
 
-data = [list(map(int, input().split())) for _ in range(max)]
+# data = [list(map(int, input().split())) for _ in range(max)]
 
-def DFS(node,depth):
-    if depth == max :
-        global start
-        return price(node,start)
-    # print(depth)
-    visited[node] = True # 현재 노드 방문 활성화 
+# def DFS(node,depth):
+#     if depth == max :
+#         global start
+#         return price(node,start)
+#     # print(depth)
+#     visited[node] = True # 현재 노드 방문 활성화 
 
-    min_value = -1
-    for i in range(max):    
-        if visited[i]:
-            temp = price(node,i) + DFS(i,depth+1)
-            print(temp)
-            if temp < min_value and min_value > 0:
-                min_value = temp 
+#     min_value = -1
+#     for i in range(max):    
+#         if visited[i]:
+#             temp = price(node,i) + DFS(i,depth+1)
+#             print(temp)
+#             if temp < min_value and min_value > 0:
+#                 min_value = temp 
                 
-    visited[node] = False # 현재 노드의 방문 비활성화 
-    return min_value
+#     visited[node] = False # 현재 노드의 방문 비활성화 
+#     return min_value
 
-def price(start,end):
-    return data[start][end]
+# def price(start,end):
+#     return data[start][end]
 
-result = []
-for i in range(max):
-    start = i 
-    result+=[DFS(i,0)]
-print(result)
+# result = []
+# for i in range(max):
+#     start = i 
+#     result+=[DFS(i,0)]
+# print(result)
+import sys
+
+input = sys.stdin.readline
+N = int(input())
+matrix = [list(map(int,input().split())) for _ in range(N)]
+
+def tsp(matrix,start_index,size):
+    visited = [False]*size
+    def exhaustive_search(x:int,index:int,sum:int):
+        if index == size-1:
+            visited[x] = False
+            temp = matrix[x][start_index]
+            return sum+temp if temp != 0 else -1 
+        
+        visited[x] = True
+        min_sum = -1
+        for i in range(size):
+            if not visited[i] and matrix[x][i] != 0:
+                temp_sum = exhaustive_search(i,index+1,sum+matrix[x][i])
+                if temp_sum == -1 :
+                    continue
+                if min_sum > temp_sum or min_sum == -1:
+                    min_sum = temp_sum
+        visited[x] = False
+        return min_sum
+    return exhaustive_search(start_index,0,0)
+
+min_sum = -1
+for i in range(N):
+    temp = tsp(matrix,i,N)
+    if min_sum > temp or min_sum == -1 :
+        min_sum = temp
+print(min_sum)
