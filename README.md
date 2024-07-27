@@ -1,2 +1,2 @@
-# conding-test
-this repository is used for uploading coding test files
+# Algoritm-Practices
+this repository is used for upload my alogirothm-practices 
