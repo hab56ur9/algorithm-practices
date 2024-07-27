@@ -6,13 +6,13 @@ def dfs(graph,start):
     visited  = [False]*n
     cnt=0
     while stack:
+        # print(stack)
         v = stack.pop()
-        if pos[v-1] == "1" and v != start : # 중간에 실내를 만날시에 돌아가기 
-            cnt+=1
-            visited[v]= True
-            continue
         if not visited[v]:
-            visited[v] = True
+            visited[v]= True
+            if pos[v-1] == "1" and v != start : # 중간에 실내를 만날시에 돌아가기 
+                cnt+=1
+                continue
             for neighbor in graph[v]:
                 if not visited[neighbor]:
                     stack.append(neighbor)
@@ -27,10 +27,9 @@ for _ in range(N-1):
     v,w = map(int,input().split())
     graph[v].append(w)
     graph[w].append(v)
-
 cnt = 0 
-for i in range(1,N):
-    if pos[i] == "1":
+for i in range(1,N+1):
+    if pos[i-1] == "1":
         cnt+=dfs(graph,i)
 print(cnt)
 
