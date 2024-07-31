@@ -1,1 +1,0 @@
-{"name":"Local: #21606","url":"/Users/hab5/project/conding-test/.venv/2주차/#21606.py","tests":[{"id":1721043598327,"input":"5\n10111\n1 2\n2 3\n2 4\n4 5","output":"8"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/hab5/project/conding-test/.venv/2주차/#21606.py","group":"local","local":true}
