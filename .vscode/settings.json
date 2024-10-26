@@ -1,7 +1,16 @@
 {
-    "python.testing.pytestArgs": [
-        "4주차"
-    ],
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.acceptSuggestionOnEnter": "off",
+
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+
+    // Python 린터 비활성화
+    "github.copilot.enable": false,
+    "eslint.enable": false,
 }
